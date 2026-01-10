@@ -1,0 +1,99 @@
+---
+import "../styles/global.css";
+const { title = "Hugo Javier Padilla Cavadia - Senior Mobile Developer" } =
+	Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta
+			content="Portfolio of Hugo Javier Padilla Cavadia, Senior Mobile Developer specializing in Flutter, Kotlin, and Android Security."
+			name="description"
+		/>
+		<title>{title}</title>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com" rel="preconnect" />
+		<link
+			crossorigin=""
+			href="https://fonts.gstatic.com"
+			rel="preconnect"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+			rel="stylesheet"
+		/>
+
+		<!-- Dark Mode Init -->
+		<script is:inline>
+			// Simple dark mode toggle logic initialization
+			const html = document.documentElement;
+			// Default to dark mode as per request screenshot priority
+			if (
+				localStorage.theme === "dark" ||
+				(!("theme" in localStorage) &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				html.classList.add("dark");
+			} else {
+				// Force dark mode initially as it is the primary design requested
+				html.classList.add("dark");
+			}
+		</script>
+	</head>
+	<body
+		class="bg-background-dark dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300"
+	>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	/* Custom Scrollbar from user snippet */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+	::-webkit-scrollbar-track {
+		background: #1a1e23;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #374151;
+		border-radius: 4px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #4b5563;
+	}
+
+	.hero-image-mask {
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			black 80%,
+			transparent 100%
+		);
+		mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+	}
+
+	/* Animation utilities */
+	@keyframes fade-in-up {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.animate-fade-in-up {
+		animation: fade-in-up 0.8s ease-out forwards;
+	}
+</style>
