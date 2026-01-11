@@ -1,13 +1,36 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-display: "Poppins", "sans-serif";
   --font-sans: "Inter", "sans-serif";
+
+  --color-primary: #FFC107;
+  --color-primary-hover: #e0a800;
+
+  --color-background-light: #F3F4F6;
+  --color-background-dark: #1A1A1A;
+
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #252525;
+  --color-surface-card: #2A2A2A;
+
+  --color-text-light: #1F2937;
+  --color-text-dark: #FFFFFF;
+
+  --color-muted-light: #6B7280;
+  --color-muted-dark: #9CA3AF;
+
+  --color-border-dark: #333333;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
 html,
 body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
