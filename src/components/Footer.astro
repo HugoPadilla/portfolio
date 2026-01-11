@@ -1,6 +1,6 @@
 <footer
   class="bg-background-light dark:bg-background-dark pt-24 pb-12 border-t border-gray-200 dark:border-border-dark"
-    id="contact"
+  id="contact"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
@@ -8,31 +8,31 @@
                 <h2
                   class="text-4xl lg:text-5xl font-display font-bold text-text-light dark:text-text-dark mb-6"
                 >
-                    ¿Tienes una idea? <br />
+                    ¿Tienes una idea? <br/>
                     <span class="text-primary">Hagámosla realidad.</span>
                 </h2>
                 <p
-                    class="text-lg text-muted-light dark:text-muted-dark mb-8 max-w-md"
+                  class="text-lg text-muted-light dark:text-muted-dark mb-8 max-w-md"
                 >
                     Estoy disponible para proyectos freelance y consultorías.
                     Hablemos sobre cómo puedo aportar valor a tu equipo.
                 </p>
                 <div class="flex flex-col gap-4">
                     <a
-                        class="flex items-center gap-4 group"
-                        href="mailto:hugojavier19890@gmail.com.com"
+                      class="flex items-center gap-4 group"
+                      href="mailto:hugojavier19890@gmail.com.com"
                     >
                         <div
                           class="w-12 h-12 rounded-full bg-surface-light dark:bg-surface-card border border-gray-200 dark:border-border-dark flex items-center justify-center group-hover:border-primary transition-colors"
                         >
                             <span
                               class="material-icons-outlined text-text-light dark:text-text-dark"
-                                >email</span
+                            >email</span
                             >
                         </div>
                         <div>
                             <p
-                                class="text-xs text-muted-light dark:text-muted-dark uppercase tracking-wide"
+                              class="text-xs text-muted-light dark:text-muted-dark uppercase tracking-wide"
                             >
                                 Email
                             </p>
@@ -44,21 +44,21 @@
                         </div>
                     </a>
                     <a
-                        class="flex items-center gap-4 group"
-                        href="https://www.linkedin.com/in/hugopadillacavadia"
-                        target="_blank"
+                      class="flex items-center gap-4 group"
+                      href="https://www.linkedin.com/in/hugopadillacavadia"
+                      target="_blank"
                     >
                         <div
                           class="w-12 h-12 rounded-full bg-surface-light dark:bg-surface-card border border-gray-200 dark:border-border-dark flex items-center justify-center group-hover:border-primary transition-colors"
                         >
                             <span
                               class="material-icons-outlined text-text-light dark:text-text-dark"
-                                >people</span
+                            >people</span
                             >
                         </div>
                         <div>
                             <p
-                                class="text-xs text-muted-light dark:text-muted-dark uppercase tracking-wide"
+                              class="text-xs text-muted-light dark:text-muted-dark uppercase tracking-wide"
                             >
                                 LinkedIn
                             </p>
@@ -75,6 +75,7 @@
               class="bg-surface-light dark:bg-surface-card p-8 rounded-3xl border border-gray-200 dark:border-border-dark shadow-2xl shadow-black/5 dark:shadow-black/20"
             >
                 <form
+                  id="contact-form"
                   name="contact"
                   method="POST"
                   data-netlify="true"
@@ -83,26 +84,26 @@
                     <div class="grid grid-cols-2 gap-6">
                         <div class="col-span-2 sm:col-span-1">
                             <label
-                                class="block text-sm font-medium text-muted-light dark:text-muted-dark mb-2"
-                                >Nombre</label
+                              class="block text-sm font-medium text-muted-light dark:text-muted-dark mb-2"
+                            >Nombre</label
                             >
                             <input
                               class="w-full bg-background-light dark:bg-background-dark border border-gray-300 dark:border-border-dark rounded-lg px-4 py-3 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                                placeholder="Tu nombre"
-                                type="text"
+                              placeholder="Tu nombre"
+                              type="text"
                               name="name"
                               required
                             />
                         </div>
                         <div class="col-span-2 sm:col-span-1">
                             <label
-                                class="block text-sm font-medium text-muted-light dark:text-muted-dark mb-2"
-                                >Email</label
+                              class="block text-sm font-medium text-muted-light dark:text-muted-dark mb-2"
+                            >Email</label
                             >
                             <input
                               class="w-full bg-background-light dark:bg-background-dark border border-gray-300 dark:border-border-dark rounded-lg px-4 py-3 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                                placeholder="tu@email.com"
-                                type="email"
+                              placeholder="tu@email.com"
+                              type="email"
                               name="email"
                               required
                             />
@@ -110,21 +111,33 @@
                     </div>
                     <div>
                         <label
-                            class="block text-sm font-medium text-muted-light dark:text-muted-dark mb-2"
-                            >Mensaje</label
+                          class="block text-sm font-medium text-muted-light dark:text-muted-dark mb-2"
+                        >Mensaje</label
                         >
                         <textarea
                           class="w-full bg-background-light dark:bg-background-dark border border-gray-300 dark:border-border-dark rounded-lg px-4 py-3 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                            placeholder="Cuéntame sobre tu proyecto..."
+                          placeholder="Cuéntame sobre tu proyecto..."
                           rows="4"
                           name="message"
                           required></textarea>
                     </div>
-                    <button
-                        class="w-full bg-primary hover:bg-primary-hover text-gray-900 font-bold py-4 rounded-lg transition-colors"
-                        type="submit"
+                    <div
+                      id="form-message"
+                      class="hidden text-center rounded-lg p-3 text-sm font-medium"
                     >
-                        Enviar Mensaje
+                    </div>
+
+                    <button
+                      id="submit-button"
+                      class="w-full bg-primary hover:bg-primary-hover text-gray-900 font-bold py-4 rounded-lg transition-colors flex justify-center items-center gap-2"
+                      type="submit"
+                    >
+                        <span>Enviar Mensaje</span>
+                        <div
+                          id="spinner"
+                          class="hidden w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"
+                        >
+                        </div>
                     </button>
                 </form>
             </div>
@@ -138,16 +151,81 @@
             </p>
             <div class="flex space-x-6">
                 <a
-                    class="text-muted-light dark:text-muted-dark hover:text-white transition-colors"
-                    href="#"
+                  class="text-muted-light dark:text-muted-dark hover:text-white transition-colors"
+                  href="#"
                 >
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"
-                        ><path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                        ></path></svg
+                    >
+                        <path
+                          d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                        ></path>
+                    </svg
                     >
                 </a>
             </div>
         </div>
     </div>
 </footer>
+
+<script is:inline>
+    const form = document.getElementById("contact-form");
+    const messageDiv = document.getElementById("form-message");
+    const submitButton = document.getElementById("submit-button");
+    const spinner = document.getElementById("spinner");
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Reset Messages
+            messageDiv.classList.add("hidden");
+            messageDiv.classList.remove(
+              "bg-green-100",
+              "text-green-800",
+              "bg-red-100",
+              "text-red-800",
+            );
+
+            // Show loading state
+            spinner.classList.remove("hidden");
+            submitButton.setAttribute("disabled", "true");
+            submitButton.classList.add("opacity-50", "cursor-not-allowed");
+
+            const formData = new FormData(form);
+            const data = new URLSearchParams(formData).toString();
+
+            try {
+                const response = await fetch("/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: data,
+                });
+
+                if (response.ok) {
+                    messageDiv.textContent =
+                      "¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.";
+                    messageDiv.classList.add("bg-green-100", "text-green-800");
+                    messageDiv.classList.remove("hidden");
+                    form.reset();
+                } else {
+                    throw new Error("Error al enviar el formulario");
+                }
+            } catch (error) {
+                messageDiv.textContent =
+                  "Hubo un error al enviar tu mensaje. Por favor intenta de nuevo.";
+                messageDiv.classList.add("bg-red-100", "text-red-800");
+                messageDiv.classList.remove("hidden");
+            } finally {
+                // Reset loading state
+                spinner.classList.add("hidden");
+                submitButton.removeAttribute("disabled");
+                submitButton.classList.remove(
+                  "opacity-50",
+                  "cursor-not-allowed",
+                );
+            }
+        });
+    }
+</script>
