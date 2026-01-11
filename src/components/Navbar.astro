@@ -45,16 +45,18 @@
     </div>
 </nav>
 
-<script>
+<script is:inline>
     const toggleButton = document.getElementById("theme-toggle");
     const html = document.documentElement;
 
-    toggleButton?.addEventListener("click", () => {
-        html.classList.toggle("dark");
-        if (html.classList.contains("dark")) {
-            localStorage.theme = "dark";
-        } else {
-            localStorage.theme = "light";
-        }
-    });
+    if (toggleButton) {
+        toggleButton.addEventListener("click", () => {
+            html.classList.toggle("dark");
+            if (html.classList.contains("dark")) {
+                localStorage.theme = "dark";
+            } else {
+                localStorage.theme = "light";
+            }
+        });
+    }
 </script>
