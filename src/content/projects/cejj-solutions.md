@@ -2,7 +2,7 @@
 title: "CEJJ Solutions"
 subtitle: "Offline-First Messaging"
 description: "Solución de mensajería offline para entornos sin conectividad. Utiliza protocolos P2P y Wi-Fi Direct para garantizar la comunicación crítica en campo."
-tags: ["Android Nativo", "Offline-First"]
+tags: [ "Flutter", "Android Nativo", "Firebase","Offline-First", "Seguridad" ]
 icon: "wifi_off"
 iconColorClass: "text-emerald-400"
 gradientFrom: "from-emerald-900"

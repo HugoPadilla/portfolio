@@ -2,7 +2,7 @@
 title: "GJA Publicidad App"
 subtitle: "Gestión de Campañas"
 description: "Sistema de gestión optimizada para campañas publicitarias. Sincronización en tiempo real y dashboards analíticos para la toma de decisiones basada en datos."
-tags: ["Flutter", "Firebase", "Analytics"]
+tags: [ "Flutter", "Firebase", "Analytics", "Seguridad" ]
 icon: "campaign"
 iconColorClass: "text-indigo-400"
 gradientFrom: "from-indigo-900"
