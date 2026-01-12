@@ -1,0 +1,77 @@
+---
+const steps = [
+  {
+    title: "Requerimientos",
+    subtitle: "Análisis y Alcance",
+    icon: "playlist_add_check",
+  },
+  {
+    title: "Arquitectura",
+    subtitle: "Diseño del Sistema",
+    icon: "architecture",
+  },
+  {
+    title: "Desarrollo",
+    subtitle: "Implementación",
+    icon: "code",
+  },
+  {
+    title: "Pruebas",
+    subtitle: "QA y Seguridad",
+    icon: "bug_report",
+  },
+  {
+    title: "Despliegue",
+    subtitle: "Lanzamiento y Monitoreo",
+    icon: "rocket_launch",
+  },
+];
+---
+
+<section class="py-24 bg-surface-light dark:bg-background-dark relative overflow-hidden">
+    <!-- Background Decorator -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-20">
+            <h2 class="font-display text-4xl font-bold text-text-light dark:text-text-dark mb-4">
+                Ciclo de Desarrollo
+            </h2>
+            <p class="text-lg text-muted-light dark:text-muted-dark max-w-2xl mx-auto">
+                Flujo de trabajo estandarizado garantizando calidad desde la concepción hasta la entrega.
+            </p>
+        </div>
+
+        <div class="relative">
+            <!-- Timeline Line (Desktop) -->
+            <div class="hidden lg:block absolute top-[2.25rem] left-0 w-full h-px bg-gray-200 dark:bg-gray-800 z-0"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
+              {steps.map((step) => (
+                      <div class="group relative flex flex-col items-center text-center z-10">
+                          <!-- Icon Circle -->
+                          <div class="w-20 h-20 rounded-full bg-surface-light dark:bg-surface-card border border-gray-200 dark:border-border-dark group-hover:border-primary dark:group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(255,193,7,0.15)] flex items-center justify-center mb-6 transition-all duration-300 relative">
+                              <!-- Inner Dot for active visual -->
+                              <div class="absolute w-20 h-20 rounded-full bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+
+                              <span class="material-icons-outlined text-3xl text-muted-light dark:text-muted-dark group-hover:text-primary transition-colors duration-300 relative z-10">
+                                {step.icon}
+                            </span>
+                          </div>
+
+                          <!-- Text Content -->
+                          <h3 class="text-lg font-bold text-text-light dark:text-text-dark mb-1 group-hover:text-primary transition-colors">
+                            {step.title}
+                          </h3>
+                          <p class="text-sm text-muted-light dark:text-muted-dark">
+                            {step.subtitle}
+                          </p>
+                      </div>
+              ))}
+            </div>
+        </div>
+    </div>
+</section>
