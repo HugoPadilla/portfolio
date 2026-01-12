@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import {ClientRouter} from "astro:transitions";
 const { title = "Hugo Javier Padilla Cavadia - Senior Mobile Developer" } =
 	Astro.props;
 ---
@@ -11,6 +12,7 @@ const { title = "Hugo Javier Padilla Cavadia - Senior Mobile Developer" } =
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<ClientRouter/>
 		<meta
 			content="Portfolio of Hugo Javier Padilla Cavadia, Senior Mobile Developer specializing in Flutter, Kotlin, and Android Security."
 			name="description"
@@ -35,19 +37,18 @@ const { title = "Hugo Javier Padilla Cavadia - Senior Mobile Developer" } =
 
 		<!-- Dark Mode Init -->
 		<script is:inline>
-			// Simple dark mode toggle logic initialization
-			const html = document.documentElement;
-			// Default to dark mode as per request screenshot priority
-			if (
-				localStorage.theme === "dark" ||
-				(!("theme" in localStorage) &&
-					window.matchMedia("(prefers-color-scheme: dark)").matches)
-			) {
+			function applyTheme() {
+				const html = document.documentElement;
+				// Force Dark Mode Always
 				html.classList.add("dark");
-			} else {
-				// Force dark mode initially as it is the primary design requested
-				html.classList.add("dark");
+				localStorage.theme = "dark";
 			}
+
+			// Apply on initial load
+			applyTheme();
+
+			// Re-apply on view transition
+			document.addEventListener("astro:after-swap", applyTheme);
 		</script>
 	</head>
 	<body
