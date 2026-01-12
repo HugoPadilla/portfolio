@@ -2,7 +2,7 @@
 title: "BEMYSELF ID"
 subtitle: "Identidad Digital Soberana"
 description: "Plataforma de identidad digital soberana. Implementación de estándares de seguridad biométrica y blockchain para una verificación de usuarios robusta y sin fricción."
-tags: ["Kotlin", "Biometría", "Security"]
+tags: [ "Flutter","Swift", "Kotlin", "Biometría", "Seguridad" ]
 icon: "fingerprint"
 iconColorClass: "text-gray-400"
 gradientFrom: "from-gray-800"
