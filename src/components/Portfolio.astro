@@ -1,3 +1,14 @@
+---
+import {getCollection} from "astro:content";
+
+const projects = await getCollection("projects");
+// Sort by some criteria if needed, for now just take first 2.
+// Filter out "coming soon" if you want only real projects
+const featuredProjects = projects
+  .filter((p) => !p.data.isComingSoon)
+  .slice(0, 2);
+---
+
 <section class="py-24 bg-surface-light dark:bg-surface-dark" id="portfolio">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-end mb-16">
@@ -7,14 +18,14 @@
                     >Portfolio</span
                 >
                 <h2
-                        class="text-3xl md:text-4xl font-display font-bold text-text-light dark:text-text-dark mt-2"
+                  class="text-3xl md:text-4xl font-display font-bold text-text-light dark:text-text-dark mt-2"
                 >
                     Proyectos Destacados
                 </h2>
             </div>
             <a
                 class="hidden md:flex items-center text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary transition-colors"
-                href="#"
+                href="/projects"
             >
                 Ver todos <span class="material-icons-outlined text-base ml-1"
                     >arrow_right_alt</span
@@ -22,108 +33,58 @@
             </a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="group cursor-pointer">
-                <div
-                        class="relative overflow-hidden rounded-2xl bg-gray-200 dark:bg-surface-card aspect-video mb-6"
-                >
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500"
-                    >
-                        <div class="text-center">
-                            <span
-                                class="material-icons-outlined text-6xl text-gray-500 mb-2"
-                                >fingerprint</span
-                            >
-                            <h3 class="text-2xl font-bold text-gray-400">
-                                BEMYSELF ID
-                            </h3>
-                        </div>
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-                    >
-                        <span
-                            class="px-6 py-3 bg-primary text-gray-900 font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform"
-                            >Ver Caso de Estudio</span
-                        >
-                    </div>
-                </div>
-                <div>
-                    <div class="flex gap-3 mb-3">
-                        <span
-                            class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
-                            >Kotlin</span
-                        >
-                        <span
-                            class="text-xs font-semibold px-2 py-1 rounded bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
-                            >Security</span
-                        >
-                    </div>
-                    <h3
-                            class="text-2xl font-bold text-text-light dark:text-text-dark group-hover:text-primary transition-colors"
-                    >
-                        BEMYSELF ID
-                    </h3>
-                    <p
-                        class="mt-2 text-muted-light dark:text-muted-dark line-clamp-2"
-                    >
-                        Plataforma de identidad digital soberana utilizando
-                        tecnologías biométricas avanzadas y blockchain para
-                        verificación segura.
-                    </p>
-                </div>
-            </div>
-            <div class="group cursor-pointer">
-                <div
-                        class="relative overflow-hidden rounded-2xl bg-gray-200 dark:bg-surface-card aspect-video mb-6"
-                >
-                    <div
-                        class="absolute inset-0 bg-gradient-to-bl from-indigo-900 to-slate-800 flex items-center justify-center group-hover:scale-105 transition-transform duration-500"
-                    >
-                        <div class="text-center">
-                            <span
-                                class="material-icons-outlined text-6xl text-indigo-400 mb-2"
-                                >campaign</span
-                            >
-                            <h3 class="text-2xl font-bold text-indigo-300">
-                                GJA Publicidad
-                            </h3>
-                        </div>
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-                    >
-                        <span
-                            class="px-6 py-3 bg-primary text-gray-900 font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform"
-                            >Ver Caso de Estudio</span
-                        >
-                    </div>
-                </div>
-                <div>
-                    <div class="flex gap-3 mb-3">
-                        <span
-                            class="text-xs font-semibold px-2 py-1 rounded bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400"
-                            >Flutter</span
-                        >
-                        <span
-                            class="text-xs font-semibold px-2 py-1 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
-                            >Firebase</span
-                        >
-                    </div>
-                    <h3
-                            class="text-2xl font-bold text-text-light dark:text-text-dark group-hover:text-primary transition-colors"
-                    >
-                        GJA Publicidad App
-                    </h3>
-                    <p
-                        class="mt-2 text-muted-light dark:text-muted-dark line-clamp-2"
-                    >
-                        Aplicación de gestión publicitaria interna con
-                        sincronización en tiempo real y paneles de análisis de
-                        datos para clientes.
-                    </p>
-                </div>
-            </div>
+            {
+                featuredProjects.map((project) => (
+                  <a
+                    href={`/projects/${project.slug}`}
+                    class="group cursor-pointer block"
+                  >
+                      <div
+                        class="relative overflow-hidden rounded-2xl bg-gray-200 dark:bg-surface-card aspect-video mb-6">
+                          <div
+                            class={`absolute inset-0 bg-gradient-to-br ${project.data.gradientFrom || "from-gray-700"} ${project.data.gradientTo || "to-gray-900"} flex items-center justify-center group-hover:scale-105 transition-transform duration-500`}
+                          >
+                              <div class="text-center">
+                                    <span
+                                      class={`material-icons-outlined text-6xl mb-2 ${project.data.iconColorClass || "text-gray-500"}`}
+                                    >
+                                        {project.data.icon}
+                                    </span>
+                                  <h3
+                                    class={`text-2xl font-bold ${project.data.iconColorClass ? project.data.iconColorClass.replace("text-", "text-opacity-80 text-") : "text-gray-400"}`}
+                                  >
+                                      {project.data.title}
+                                  </h3>
+                              </div>
+                          </div>
+                          <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                  class="px-6 py-3 bg-primary text-gray-900 font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                    Ver Caso de Estudio
+                                </span>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="flex gap-3 mb-3">
+                              {project.data.tags.slice(0, 3).map((tag) => (
+                                <span
+                                  class="text-xs font-semibold px-2 py-1 rounded bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-muted-light dark:text-muted-dark">
+                                        {tag}
+                                    </span>
+                              ))}
+                          </div>
+                          <h3
+                            class="text-2xl font-bold text-text-light dark:text-text-dark group-hover:text-primary transition-colors">
+                              {project.data.title}
+                          </h3>
+                          <p class="mt-2 text-muted-light dark:text-muted-dark line-clamp-2">
+                              {project.data.description}
+                          </p>
+                      </div>
+                  </a>
+                ))
+            }
         </div>
     </div>
 </section>

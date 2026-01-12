@@ -1,0 +1,36 @@
+---
+import {getCollection} from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProjectCaseStudy from "../../components/ProjectCaseStudy.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((entry) => ({
+    params: {slug: entry.slug},
+    props: {entry},
+  }));
+}
+
+const {entry} = Astro.props;
+---
+
+<Layout title={`${entry.data.title} | Case Study`}>
+    <Navbar/>
+
+    <main class="pt-20">
+        <div class="fixed top-24 left-4 z-50">
+            <a
+                    href="/projects"
+                    class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-background-dark/80 backdrop-blur border border-white/10 text-white hover:bg-primary hover:text-black transition-all"
+            >
+                <span class="material-icons-outlined">arrow_back</span>
+            </a>
+        </div>
+
+        <ProjectCaseStudy project={entry}/>
+    </main>
+
+    <Footer/>
+</Layout>

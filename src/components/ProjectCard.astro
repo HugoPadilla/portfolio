@@ -1,0 +1,110 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  image?: string;
+  icon?: string;
+  iconColorClass?: string;
+  gradientFrom?: string;
+  gradientTo?: string;
+  link?: string;
+  isComingSoon?: boolean;
+}
+
+const {
+  title,
+  description,
+  tags,
+  image,
+  icon,
+  iconColorClass = "text-gray-600",
+  gradientFrom = "from-gray-800",
+  gradientTo = "to-gray-950",
+  link = "#",
+  isComingSoon = false,
+} = Astro.props;
+---
+
+<article
+        class={`group flex flex-col bg-surface-light dark:bg-surface-card rounded-2xl border ${isComingSoon ? "border-dashed border-gray-300 dark:border-gray-600 bg-opacity-50 dark:bg-opacity-50" : "border-gray-200 dark:border-border-dark hover:border-primary dark:hover:border-primary hover:shadow-xl hover:shadow-primary/5"} overflow-hidden transition-all duration-300`}
+>
+    <div
+            class={`relative aspect-video overflow-hidden ${isComingSoon ? "bg-gray-50 dark:bg-gray-800/50 flex flex-col items-center justify-center text-center p-6" : "bg-gray-100 dark:bg-gray-800"}`}
+    >
+      {
+        isComingSoon ? (
+                <>
+                    <span class="material-icons-outlined text-5xl text-muted-light dark:text-muted-dark mb-3">
+                        {icon}
+                    </span>
+                    <span class="text-sm uppercase tracking-widest text-muted-light dark:text-muted-dark font-semibold">
+                        En desarrollo
+                    </span>
+                </>
+        ) : (
+                <>
+                    <div
+                            class={`absolute inset-0 bg-gradient-to-br ${gradientFrom} ${gradientTo} flex items-center justify-center group-hover:scale-105 transition-transform duration-500`}
+                    >
+                        <span
+                                class={`material-icons-outlined text-6xl ${iconColorClass} group-hover:text-primary transition-colors`}
+                        >
+                            {icon}
+                        </span>
+                    </div>
+                    <a
+                            href={link}
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
+                    >
+                        <span class="px-4 py-2 bg-primary text-gray-900 text-sm font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                            Ver Detalles
+                        </span>
+                    </a>
+                </>
+        )
+      }
+    </div>
+
+    <div class="p-6 flex-1 flex flex-col">
+        <div class="flex gap-2 mb-4 flex-wrap">
+          {
+            tags.map((tag) => (
+                    <span class="px-2.5 py-1 bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-muted-light dark:text-muted-dark text-xs font-semibold rounded">
+                        {tag}
+                    </span>
+            ))
+          }
+        </div>
+
+        <h3
+                class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors"
+        >
+          {title}
+        </h3>
+
+        <p
+                class="text-muted-light dark:text-muted-dark text-sm mb-6 flex-1 line-clamp-3"
+        >
+          {description}
+        </p>
+
+      {
+        isComingSoon ? (
+                <span class="inline-flex items-center text-sm font-medium text-muted-light dark:text-muted-dark cursor-not-allowed mt-auto">
+                    Próximamente
+                </span>
+        ) : (
+                <a
+                        class="inline-flex items-center text-sm font-bold text-text-light dark:text-text-dark group-hover:text-primary transition-colors mt-auto"
+                        href={link}
+                >
+                    Ver Caso de Estudio{" "}
+                    <span class="material-icons-outlined text-lg ml-1 group-hover:translate-x-1 transition-transform">
+                        arrow_forward
+                    </span>
+                </a>
+        )
+      }
+    </div>
+</article>

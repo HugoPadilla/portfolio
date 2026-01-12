@@ -1,0 +1,171 @@
+---
+import type {CollectionEntry} from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const {project} = Astro.props;
+const {
+  title,
+  subtitle,
+  description,
+  tags,
+  icon,
+  gradientFrom,
+  gradientTo,
+  projectStats,
+  context,
+  architecture,
+  keyFeatures,
+  iconColorClass = "text-white",
+} = project.data;
+---
+
+<article class="bg-background-light dark:bg-background-dark min-h-screen">
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 overflow-hidden bg-background-dark text-white">
+        <!-- Background Gradient -->
+        <div class={`absolute inset-0 bg-gradient-to-br ${gradientFrom} ${gradientTo} opacity-20`}></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="flex gap-2 mb-6">
+                      {tags.map(tag => (
+                              <span class="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded text-sm font-semibold text-white/90">
+                {tag}
+              </span>
+                      ))}
+                    </div>
+
+                    <h1 class="font-display text-4xl lg:text-6xl font-bold leading-tight mb-2">
+                      {title}
+                    </h1>
+                    <h2 class="text-2xl text-primary font-medium mb-6">
+                      {subtitle}
+                    </h2>
+
+                    <p class="text-lg text-gray-300 leading-relaxed mb-8 max-w-xl">
+                      {description}
+                    </p>
+
+                  {projectStats && (
+                          <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                              <div>
+                                  <div class="flex items-center gap-2 text-warning mb-1">
+                                      <span class="material-icons-outlined text-sm">schedule</span>
+                                      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Duración</span>
+                                  </div>
+                                  <p class="font-semibold text-white">{projectStats.duration}</p>
+                              </div>
+                              <div>
+                                  <div class="flex items-center gap-2 text-warning mb-1">
+                                      <span class="material-icons-outlined text-sm">devices</span>
+                                      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Plataforma</span>
+                                  </div>
+                                  <p class="font-semibold text-white">{projectStats.platform}</p>
+                              </div>
+                          </div>
+                  )}
+                </div>
+
+                <!-- Hero Graphic (Mockup Placeholder) -->
+                <div class="relative flex justify-center lg:justify-end">
+                    <!-- Simulated Phone Mockup -->
+                    <div class="relative w-64 h-[500px] bg-gray-900 border-8 border-gray-800 rounded-[3rem] shadow-2xl overflow-hidden flex flex-col">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-xl z-20"></div>
+                        <div class="flex-1 bg-surface-card flex items-center justify-center p-6 text-center">
+                            <div>
+                                <span class={`material-icons-outlined text-6xl ${iconColorClass} mb-4`}>{icon}</span>
+                                <h3 class="font-bold text-white mb-2">{title}</h3>
+                                <div class="w-16 h-1 bg-primary mx-auto rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorator Circle -->
+                    <div class={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl -z-10`}></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Context Section -->
+  {context && (
+          <section class="py-20 bg-surface-card relative border-y border-border-dark">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="text-center max-w-3xl mx-auto mb-16">
+                      <span class="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">El Contexto</span>
+                      <h2 class="text-3xl font-display font-bold text-white mb-6">{context.title}</h2>
+                      <p class="text-gray-400 text-lg leading-relaxed">{context.description}</p>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {context.challenges.map(challenge => (
+                            <div class="bg-background-dark p-6 rounded-xl border border-white/5 hover:border-primary/50 transition-colors">
+                                <div class="w-1 h-8 bg-primary mb-4 rounded-full"></div>
+                                <h3 class="text-xl font-bold text-white mb-2">{challenge.title}</h3>
+                                <p class="text-sm text-gray-400">{challenge.description}</p>
+                            </div>
+                    ))}
+                  </div>
+              </div>
+          </section>
+  )}
+
+    <!-- Architecture Section -->
+  {architecture && (
+          <section class="py-24 bg-background-dark">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="mb-16">
+                      <span class="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">Arquitectura</span>
+                      <h2 class="text-3xl font-display font-bold text-white mb-6">{architecture.title}</h2>
+                      <p class="text-gray-400 max-w-2xl">{architecture.description}</p>
+                  </div>
+
+                {architecture.steps && (
+                        <div class="relative">
+                            <!-- Connector Line -->
+                            <div class="hidden lg:block absolute top-10 left-10 right-10 h-0.5 bg-gray-800 z-0"></div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                              {architecture.steps.map((step) => (
+                                      <div class="relative z-10 bg-surface-card p-6 rounded-xl border border-white/5 flex flex-col items-center text-center group hover:-translate-y-1 transition-transform duration-300">
+                                          <div class="w-12 h-12 rounded-full bg-background-dark border-2 border-primary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(255,193,7,0.3)]">
+                                              <span class="material-icons-outlined text-primary">{step.icon}</span>
+                                          </div>
+                                          <h3 class="font-bold text-white text-lg mb-1">{step.title}</h3>
+                                          <p class="text-xs text-gray-400 uppercase tracking-wider">{step.subtitle}</p>
+
+                                          <!-- Step Number Badge -->
+                                          <div class="absolute top-4 right-4 text-4xl font-display font-bold text-white/5 select-none">
+                                            {step.stepNumber}
+                                          </div>
+                                      </div>
+                              ))}
+                            </div>
+                        </div>
+                )}
+              </div>
+          </section>
+  )}
+
+    <!-- Features Section -->
+  {keyFeatures && (
+          <section class="py-24 bg-surface-card">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {keyFeatures.map(feature => (
+                            <div class="bg-background-dark p-8 rounded-2xl border border-white/5 hover:border-primary/30 transition-all duration-300 group">
+                                <div class="w-14 h-14 rounded-lg bg-surface-card flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors text-primary">
+                                    <span class="material-icons-outlined text-3xl">{feature.icon}</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                                <p class="text-gray-400">{feature.description}</p>
+                            </div>
+                    ))}
+                  </div>
+              </div>
+          </section>
+  )}
+</article>
